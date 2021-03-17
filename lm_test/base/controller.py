@@ -9,7 +9,7 @@ from lm_test.base.test_base import LmTest, LmTestFailure, LmTestWarning
 
 # TODO: Find a better place for this pid file, or at least more generic
 CONTROLLER_PID_FILE = '/tmp/controller.pid'
-DEFAULT_SLEEP_TIME = 30
+DEFAULT_SLEEP_TIME = 10
 
 
 # .............................................................................
@@ -30,7 +30,7 @@ class Controller(Daemon):
             new_tests = [new_tests]
         self._tests.extend(new_tests)
         self._tests.sort()
-    
+
     # .............................
     def rest(self, sleep_seconds=DEFAULT_SLEEP_TIME):
         """Sleep before trying to run the next test.
@@ -66,14 +66,15 @@ class Controller(Daemon):
         notify_message = None
         try:
             # Tell the test to run
-            print('Running test: {}'.format(test_to_run))
+            print('  - Running test: {}'.format(test_to_run))
             test_to_run.run_test()
             self._success_count += 1
+            notify_message = '    - PASS'
         except LmTestWarning as lm_warn:
-            notify_message = 'WARNING: {}'.format(str(lm_warn))
+            notify_message = '    - WARNING: {}'.format(str(lm_warn))
             self._warn_count += 1
         except LmTestFailure as lm_fail:
-            notify_message = 'FAILURE: {}'.format(str(lm_fail))
+            notify_message = '    - FAILURE: {}'.format(str(lm_fail))
             self._fail_count += 1
         if notify_message:
             # Send notification

@@ -16,6 +16,12 @@ class DiskUsageTest(test_base.LmTest):
         self._delay_interval = delay_interval
 
     # .............................
+    def __repr__(self):
+        return 'Disk Usage Test for {} ({}% warn, {}% error, {} second delay)'.format(
+            self._test_disk, self._warn_percent, self._error_percent,
+            self._delay_interval)
+
+    # .............................
     def run_test(self):
         """Run the test."""
         disk_usage = shutil.disk_usage(self._test_disk)

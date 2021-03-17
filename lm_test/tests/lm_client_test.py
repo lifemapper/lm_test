@@ -21,6 +21,10 @@ class LmClientTest(test_base.LmTest):
             self.client.auth.login(user_id, pwd)
 
     # .............................
+    def __repr__(self):
+        return 'LM Client Test ({})'.format(self.client._client.server)
+
+    # .............................
     def run_test(self):
         """Run lm_client tests."""
         self.run_layer_tests()

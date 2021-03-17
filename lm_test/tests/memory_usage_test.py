@@ -17,8 +17,8 @@ class MemoryUsageTest(test_base.LmTest):
     # .............................
     def run_test(self):
         """Run the test."""
-        total_memory, used_memory, free_memory = map( 
-            int, os.popen('free -t -m').readlines()[-1].split()[1:]) 
+        total_memory, used_memory, free_memory = map(
+            int, os.popen('free -t -m').readlines()[-1].split()[1:])
         used_percent = 100 * used_memory / free_memory
         self.add_new_test(
             MemoryUsageTest(

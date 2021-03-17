@@ -63,8 +63,10 @@ class Controller(Daemon):
     # .............................
     def run_test(self, test_to_run):
         """Run a test and process the result."""
+        notify_message = None
         try:
             # Tell the test to run
+            print('Running test: {}'.format(test_to_run))
             test_to_run.run_test()
             self._success_count += 1
         except LmTestWarning as lm_warn:

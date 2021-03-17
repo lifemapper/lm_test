@@ -15,6 +15,11 @@ class MemoryUsageTest(test_base.LmTest):
         self._delay_interval = delay_interval
 
     # .............................
+    def __repr__(self):
+        return 'Memory Usage Test ({}% warn, {}% error, {} second delay)'.format(
+            self._warn_percent, self._error_percent, self._delay_interval)
+
+    # .............................
     def run_test(self):
         """Run the test."""
         total_memory, used_memory, free_memory = map(

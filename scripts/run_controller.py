@@ -8,17 +8,19 @@ from lm_test.tests.cpu_usage_test import CPUUsageTest
 from lm_test.tests.disk_usage_test import DiskUsageTest
 from lm_test.tests.memory_usage_test import MemoryUsageTest
 from lm_test.tests.lm_client_test import LmClientTest
+from lm_test.tests.ot_client_test import OpenTreeTest
 from lm_test.tests.simulated_test import SimulatedSubmissionTest
 
 
 # Note: Edit this for now.  We will need a better mechanism for adding tests
 TESTS_TO_RUN = [
     #PytestTest('/home/cjgrady/git/lm_client/'),
+    MemoryUsageTest(60, 90, delay_interval=600),
+    CPUUsageTest(50, 90, delay_interval=300),
+    DiskUsageTest('/DATA/', 50, 80, delay_interval=3600),
+    DiskUsageTest('/', 50, 90, delay_interval=3600),
     LmClientTest(delay_interval=600),
-    MemoryUsageTest(1, 99, delay_interval=600),
-    CPUUsageTest(10, 100, delay_interval=300),
-    DiskUsageTest('/DATA/', 20, 80, delay_interval=3600),
-    DiskUsageTest('/', 10, 90, delay_interval=3600),
+    OpenTreeTest(),
     SimulatedSubmissionTest(True, 75, True), # Everything passes
     SimulatedSubmissionTest(True, 75, False), # Fails to validate
     SimulatedSubmissionTest(False, 75, True), # Fails to submit

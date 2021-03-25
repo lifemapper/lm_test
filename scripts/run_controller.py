@@ -29,13 +29,13 @@ TESTS_TO_RUN = [
     SimulatedSubmissionTest(True, -10, True),  # Times out
     # Longer wait but everything passes
     SimulatedSubmissionTest(True, 400, True),
-    OpenAPITest(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            '../open_api.yaml'
-        ),
-        max_urls_per_endpoint=10
-    )
+    #OpenAPITest(
+    #    os.path.join(
+    #        os.path.dirname(os.path.abspath(__file__)),
+    #        '../open_api.yaml'
+    #    ),
+    #    max_urls_per_endpoint=10
+    #)
 ]
 
 

@@ -55,3 +55,20 @@ For now, tests are added by adding them to the ```TESTS_TO_RUN``` list in
 ```scripts/run_controller.py```.  In the future tests will be added in a more generic manner.
 
 ----
+
+# Running inside of Docker
+* Clone this repository.
+* Make changes to the list of tests, if needed.
+* Place `open_api.yaml` into the root directory of this repository.
+* Build the Docker image:
+  ```bash
+  docker build -t lm_test .
+  ```
+* Run the container
+  ```bash
+  docker run -t --rm --name lm_test lm_test
+  ```
+* Start the controller
+  ```bash
+  python -m scripts.run_controller start
+  ```

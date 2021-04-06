@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
+# from setuptools import setup, find_packages
 
 #with open('README.md') as f:
 #    readme = f.read()
@@ -18,7 +18,7 @@ setup(
     author_email='cjgrady@ku.edu',
     url='https://github.com/lifemapper/lm_test',
     license=license
-    #packages=find_packages(exclude=('tests', 'docs')),
-    #install_requires=[
-    #    'requests']
+    # packages=find_packages(exclude=('tests', 'docs')),
+    # install_requires=[
+    #     'requests']
 )

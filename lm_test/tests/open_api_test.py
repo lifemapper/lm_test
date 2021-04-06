@@ -17,6 +17,7 @@ provided as the first argument
 
 class OpenAPITest(test_base.LmTest):
     """Test checking cpu usage."""
+
     # .............................
     def __init__(
         self,
@@ -27,7 +28,7 @@ class OpenAPITest(test_base.LmTest):
         # Stop testing after this many failed requests
         failed_request_limit: int = 10,
         delay_time: int = 0,
-        delay_interval: int = 3600
+        delay_interval: int = 3600,
     ):
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._open_api_schema_location = open_api_schema_location
@@ -37,8 +38,9 @@ class OpenAPITest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
-        return ('Validating API against the OpenAPI schema (%d urls per ' +
-                'endpoint)') % self._max_urls_per_endpoint
+        return (
+            'Validating API against the OpenAPI schema (%d urls per endpoint)'
+        ) % self._max_urls_per_endpoint
 
     # .............................
     def run_test(self):
@@ -55,7 +57,7 @@ class OpenAPITest(test_base.LmTest):
             error_callback,
             self._max_urls_per_endpoint,
             self._failed_request_limit,
-            {}  # TODO: provide parameter constraints
+            {},  # TODO: provide parameter constraints
         )
         self.add_new_test(
             OpenAPITest(
@@ -63,11 +65,9 @@ class OpenAPITest(test_base.LmTest):
                 self._max_urls_per_endpoint,
                 self._failed_request_limit,
                 delay_time=self._delay_interval,
-                delay_interval=self._delay_interval
+                delay_interval=self._delay_interval,
             )
         )
 
         if error_messages:
-            raise test_base.LmTestFailure(
-                json.dumps(error_messages, indent=4)
-            )
+            raise test_base.LmTestFailure(json.dumps(error_messages, indent=4))

@@ -4,9 +4,11 @@ import pytest
 
 import lm_test.base.test_base as test_base
 
+
 # .............................................................................
 class PytestTest(test_base.LmTest):
     """Run pytest for a repository"""
+
     # .............................
     def __init__(self, test_dir):
         test_base.LmTest.__init__(self)
@@ -26,7 +28,9 @@ class PytestTest(test_base.LmTest):
         os.chdir(old_cwd)
         if res.value in [2, 5]:
             raise test_base.LmTestWarning(
-                'Pytest {}, {}'.format(self._test_dir, res.name))
+                'Pytest {}, {}'.format(self._test_dir, res.name)
+            )
         elif res.value > 0:
             raise test_base.LmTestFailure(
-                'Pytest {}, {}'.format(self._test_dir, res.name))
+                'Pytest {}, {}'.format(self._test_dir, res.name)
+            )

@@ -28,16 +28,21 @@
 
 ## Coding conventions
 
-* We Use [PEP8](https://www.python.org/dev/peps/pep-0008/)
+* We mostly follow [PEP8](https://www.python.org/dev/peps/pep-0008/) with the exception of 88 character line lengths.  The Python library [black](https://github.com/psf/black) has several conventions that we follow (except for single quotes instead of double quotes).
 
 * Doc strings should follow [Google Style Guidelines](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
 
 * We use [pytest](https://docs.pytest.org/en/latest/) style tests
 
-* Use pytest with coverage and pep8 to determine if test code is adequate.  At this time, we support Python 3.5, 3.6, and 3.7.  Python 3.8 will likely work correctly but our build tests are not set up to check it.
+* We utilize GitHub Actions to automate code testing and utilize [super-linter](https://github.com/github/super-linter) for code linting.
 
 ```bash
-py.test-3 tests/ --pep8 lm_test -v --cov lm_test --cov-report term-missing
+npx jscpd .
+black --config .github/linters/.python-black
+isort --sp .github/linters/.isort.cfg .
+pylint .
+flake8 --config .github/linters/.flake8
+pytest tests/ -v --cov lm_test --cov-report term-missing
 ```
 
 ## You want to update documentation

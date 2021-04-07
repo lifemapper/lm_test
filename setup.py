@@ -16,5 +16,5 @@ setup(
     author='CJ Grady',
     author_email='cjgrady@ku.edu',
     url='https://github.com/lifemapper/lm_test',
-    license=license
+    license=license,
 )

@@ -9,9 +9,7 @@ class MemoryUsageTest(test_base.LmTest):
     """Test checking memory usage."""
 
     # .............................
-    def __init__(
-        self, warn_percent, error_percent, delay_time=0, delay_interval=300
-    ):
+    def __init__(self, warn_percent, error_percent, delay_time=0, delay_interval=300):
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._warn_percent = warn_percent
         self._error_percent = error_percent
@@ -35,7 +33,7 @@ class MemoryUsageTest(test_base.LmTest):
                 self._warn_percent,
                 self._error_percent,
                 delay_time=self._delay_interval,
-                delay_interval=self._delay_interval
+                delay_interval=self._delay_interval,
             )
         )
         if used_percent >= self._error_percent:

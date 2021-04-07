@@ -1,9 +1,11 @@
 """Test class for lm_client"""
 from random import randint, shuffle
 
-from ot_service_wrapper.open_tree import get_ottids_from_gbifids, induced_subtree
-
 import lm_test.base.test_base as test_base
+from ot_service_wrapper.open_tree import (
+    get_ottids_from_gbifids,
+    induced_subtree,
+)
 
 
 TEST_GBIF_IDS = [
@@ -99,7 +101,6 @@ class OpenTreeTest(test_base.LmTest):
                 'Failed to induce subtree from Open tree: {}'.format(err)
             )
         print(tree_resp)
-
 
     # .............................
     def run_layer_tests(self):

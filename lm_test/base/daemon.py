@@ -12,6 +12,7 @@ import time
 # .............................................................................
 class DaemonCommands:
     """Class containing command constants"""
+
     START = 'start'
     STOP = 'stop'
     RESTART = 'restart'
@@ -203,9 +204,9 @@ class Daemon:
                     self.__class__.__name__, pid
                 )
             else:
-                msg = (
-                    'Process {} is not running at PID {}, but {}'.format(
-                        self.__class__.__name__, pid, 'lock file exists'))
+                msg = 'Process {} is not running at PID {}, but {}'.format(
+                    self.__class__.__name__, pid, 'lock file exists'
+                )
         else:
             msg = 'Process {} is not running'.format(self.__class__.__name__)
 

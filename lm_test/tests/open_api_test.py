@@ -1,9 +1,5 @@
-"""Test all API endpoints."""
-import json
-import open_api_tools.test.full_test as full_test
-import lm_test.base.test_base as test_base
+"""Test all API endpoints.
 
-"""
 open_api_tools library is required for this test to work
 It, along with the installation instructions can be found here:
 https://github.com/specify/open_api_tools/
@@ -11,10 +7,13 @@ https://github.com/specify/open_api_tools/
 Also, the location of an `open_api.yaml` schema file needs to be
 provided as the first argument
 """
+import json
+
+import lm_test.base.test_base as test_base
+import open_api_tools.test.full_test as full_test
+
 
 # .............................................................................
-
-
 class OpenAPITest(test_base.LmTest):
     """Test checking cpu usage."""
 

@@ -14,7 +14,10 @@ DEFAULT_SLEEP_TIME = 10
 
 # .............................................................................
 class Controller(Daemon):
+    """Test controller."""
+
     _tests = []
+
     # .............................
     def initialize(self):
         """Initialize the test controller."""
@@ -88,13 +91,13 @@ def main():
     """Main method for script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
-        description='Controls a pool of Makeflow processes'
+        description='Controls a pool of Makeflow processes',
     )
 
     parser.add_argument(
         'cmd',
         choices=[DaemonCommands.START, DaemonCommands.STOP, DaemonCommands.RESTART],
-        help='The action that should be performed by the makeflow daemon'
+        help='The action that should be performed by the makeflow daemon',
     )
 
     args = parser.parse_args()

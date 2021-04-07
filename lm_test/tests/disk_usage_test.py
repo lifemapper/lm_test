@@ -24,7 +24,7 @@ class DiskUsageTest(test_base.LmTest):
             self._test_disk,
             self._warn_percent,
             self._error_percent,
-            self._delay_interval
+            self._delay_interval,
         )
 
     # .............................
@@ -38,14 +38,15 @@ class DiskUsageTest(test_base.LmTest):
                 self._warn_percent,
                 self._error_percent,
                 delay_time=self._delay_interval,
-                delay_interval=self._delay_interval
+                delay_interval=self._delay_interval,
             )
         )
         if used_percent >= self._error_percent:
             raise test_base.LmTestFailure(
                 'Current disk usage for {}: {:.2f} percent'.format(
-                    self._test_disk, used_percent)
+                    self._test_disk, used_percent
                 )
+            )
         elif used_percent >= self._warn_percent:
             raise test_base.LmTestWarning(
                 'Current disk usage for {}: {:.2f} percent'.format(

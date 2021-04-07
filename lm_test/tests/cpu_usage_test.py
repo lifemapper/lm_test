@@ -1,7 +1,6 @@
 """Test memory usage."""
-import psutil
-
 import lm_test.base.test_base as test_base
+import psutil
 
 
 # .............................................................................
@@ -30,8 +29,9 @@ class CPUUsageTest(test_base.LmTest):
                 self._warn_percent,
                 self._error_percent,
                 delay_time=self._delay_interval,
-                delay_interval=self._delay_interval)
+                delay_interval=self._delay_interval,
             )
+        )
         if used_percent >= self._error_percent:
             raise test_base.LmTestFailure(
                 'Current CPU usage {:.2f} percent'.format(used_percent)

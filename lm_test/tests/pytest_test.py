@@ -1,8 +1,8 @@
 """Run pytest for a directory / repository"""
 import os
-import pytest
 
 import lm_test.base.test_base as test_base
+import pytest
 
 
 # .............................................................................

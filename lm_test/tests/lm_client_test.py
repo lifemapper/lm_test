@@ -1,8 +1,7 @@
 """Test class for lm_client"""
 
-from lm_client.client.client import LmApiClient
-
 import lm_test.base.test_base as test_base
+from lm_client.client.client import LmApiClient
 
 
 # .............................................................................
@@ -40,9 +39,7 @@ class LmClientTest(test_base.LmTest):
             assert self.client.layer.count() > 0
         except AssertionError:
             raise test_base.LmTestFailure(
-                'Count layers for {}, no parameters was zero'.format(
-                    self.user_id
-                )
+                'Count layers for {}, no parameters was zero'.format(self.user_id)
             )
 
         # Check that count returns zero for bad parameters

@@ -1,16 +1,16 @@
 """Script to run test controller."""
 import argparse
-import os
 import sys
 
-from lm_test.base.daemon import DaemonCommands
 from lm_test.base.controller import Controller, CONTROLLER_PID_FILE
+from lm_test.base.daemon import DaemonCommands
 from lm_test.tests.cpu_usage_test import CPUUsageTest
 from lm_test.tests.disk_usage_test import DiskUsageTest
-from lm_test.tests.memory_usage_test import MemoryUsageTest
 from lm_test.tests.lm_client_test import LmClientTest
+from lm_test.tests.memory_usage_test import MemoryUsageTest
 from lm_test.tests.ot_client_test import OpenTreeTest
 from lm_test.tests.simulated_test import SimulatedSubmissionTest
+
 # from lm_test.tests.open_api_test import OpenAPITest
 
 
@@ -44,13 +44,13 @@ def main():
     """Main method for script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
-        description='Controls a pool of Makeflow processes'
+        description='Controls a pool of Makeflow processes',
     )
 
     parser.add_argument(
         'cmd',
         choices=[DaemonCommands.START, DaemonCommands.STOP, DaemonCommands.RESTART],
-        help='The action that should be performed by the makeflow daemon'
+        help='The action that should be performed by the makeflow daemon',
     )
 
     args = parser.parse_args()

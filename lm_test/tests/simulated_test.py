@@ -15,7 +15,7 @@ class SimulatedSubmissionTest(test_base.LmTest):
         wait_timeout,
         validate_pass,
         delay_time=0,
-        delay_interval=3600
+        delay_interval=3600,
     ):
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.submit_pass = submit_pass
@@ -49,12 +49,7 @@ class SimulatedWaitTest(test_base.LmTest):
 
     # .............................
     def __init__(
-        self,
-        wait_id,
-        wait_timeout,
-        validate_pass,
-        delay_time=0,
-        delay_interval=10
+        self, wait_id, wait_timeout, validate_pass, delay_time=0, delay_interval=10
     ):
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.wait_id = wait_id
@@ -85,7 +80,7 @@ class SimulatedWaitTest(test_base.LmTest):
                 SimulatedWaitTest(
                     self.wait_id,
                     self.wait_timeout - self.delay_interval,
-                    self.validate_pass
+                    self.validate_pass,
                 )
             )
 
@@ -95,13 +90,7 @@ class SimulatedValidateTest(test_base.LmTest):
     """Simulated validation test."""
 
     # .............................
-    def __init__(
-        self,
-        wait_id,
-        validate_pass,
-        delay_time=0,
-        delay_interval=60
-    ):
+    def __init__(self, wait_id, validate_pass, delay_time=0, delay_interval=60):
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.wait_id = wait_id
         self.validate_pass = validate_pass

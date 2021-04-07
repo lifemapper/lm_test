@@ -21,7 +21,7 @@ The test controller ```Controller``` class can be found at ```lm_test.base.contr
 It runs as a daemon process in the background and can be started and stopped using commands
 rather than a synchronous python process.  The run method is fairly simple as it looks to
 see if there is a test to run that is ready, and if so, runs the first available test, then
-sleeps.  This run method continues until the process is stopped. 
+sleeps.  This run method continues until the process is stopped.
 
 Tests that fail output a message and eventually an email or other notification method.  If
 a test emits new tests, those are added to the schedule to be run.

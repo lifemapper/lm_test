@@ -2,7 +2,7 @@
 import argparse
 import sys
 
-from lm_test.base.controller import Controller, CONTROLLER_PID_FILE
+from lm_test.base.controller import CONTROLLER_PID_FILE, Controller
 from lm_test.base.daemon import DaemonCommands
 from lm_test.tests.cpu_usage_test import CPUUsageTest
 from lm_test.tests.disk_usage_test import DiskUsageTest

@@ -7,7 +7,6 @@ from ot_service_wrapper.open_tree import (
     induced_subtree,
 )
 
-
 TEST_GBIF_IDS = [
     '3032647',
     '3032648',

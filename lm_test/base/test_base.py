@@ -4,18 +4,21 @@
 # .............................................................................
 class LmTestFailure(Exception):
     """Exception class to raise when a test fails."""
+
     pass
 
 
 # .............................................................................
 class LmTestWarning(Warning):
     """Warning class to raise when a test ends in a warning status."""
+
     pass
 
 
 # .............................................................................
 class LmTest:
     """Base class for tests."""
+
     # .............................
     def __init__(self, delay_time=0):
         """Constructor for LmTest.

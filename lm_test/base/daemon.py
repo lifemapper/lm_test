@@ -8,10 +8,11 @@ import subprocess
 import sys
 import time
 
+
 # .............................................................................
 class DaemonCommands:
-    """Class containing command constants
-    """
+    """Class containing command constants"""
+
     START = 'start'
     STOP = 'stop'
     RESTART = 'restart'
@@ -33,11 +34,11 @@ class Daemon:
         if log is not None:
             self.log = log
         else:
-            #if os.path.exists(pidfile):
-            #    with open(pidfile) as in_pid:
-            #        pid = in_pid.read().strip()
-            #else:
-            #    pid = 'unknown'
+            # if os.path.exists(pidfile):
+            #     with open(pidfile) as in_pid:
+            #         pid = in_pid.read().strip()
+            # else:
+            #     pid = 'unknown'
             self.log = logging.Logger('TestController')
 
         signal.signal(signal.SIGTERM, self._receive_signal)  # Stop signal
@@ -63,8 +64,7 @@ class Daemon:
                 # exit first parent
                 sys.exit(0)
         except OSError as err:
-            self.log.error(
-                'Fork #1 failed: {} ({})'.format(err.errno, err.strerror))
+            self.log.error('Fork #1 failed: {} ({})'.format(err.errno, err.strerror))
             sys.exit(1)
 
         # decouple from parent environment
@@ -79,8 +79,7 @@ class Daemon:
                 # exit from second parent
                 sys.exit(0)
         except OSError as err:
-            self.log.error(
-                'Fork #2 failed: {} ({})'.format(err.errno, err.strerror))
+            self.log.error('Fork #2 failed: {} ({})'.format(err.errno, err.strerror))
             sys.exit(1)
 
         # redirect standard file descriptors
@@ -93,8 +92,7 @@ class Daemon:
 
     # .............................
     def delpid(self):
-        """Final cleanup operation of removing the pid file
-        """
+        """Final cleanup operation of removing the pid file"""
         os.remove(self.pidfile)
 
     # .............................
@@ -122,8 +120,7 @@ class Daemon:
     # ============================
     # .............................
     def start(self):
-        """Start the daemon
-        """
+        """Start the daemon"""
         # Check for a pidfile to see if the daemon already runs
         try:
             with open(self.pidfile, 'r') as pid_f:
@@ -133,7 +130,8 @@ class Daemon:
 
         if pid:
             msg = 'pidfile {} already exists. Deamon already running?'.format(
-                self.pidfile)
+                self.pidfile
+            )
             self.log.error(msg)
             print(msg)
             sys.exit(1)
@@ -145,8 +143,7 @@ class Daemon:
 
     # .............................
     def stop(self):
-        """Stop the daemon
-        """
+        """Stop the daemon"""
         # Get the pid from the pidfile
         try:
             pid = None
@@ -156,8 +153,7 @@ class Daemon:
             pass
 
         if not pid:
-            msg = 'pidfile {} does not exist. Daemon not running?'.format(
-                self.pidfile)
+            msg = 'pidfile {} does not exist. Daemon not running?'.format(self.pidfile)
             self.log.error(msg)
             return  # not an error in a restart
 
@@ -182,15 +178,13 @@ class Daemon:
 
     # .............................
     def restart(self):
-        """Restart the daemon
-        """
+        """Restart the daemon"""
         self.stop()
         self.start()
 
     # .............................
     def status(self):
-        """Check the status of the daemon
-        """
+        """Check the status of the daemon"""
         # Check for a pidfile to see if the daemon is running
         try:
             with open(self.pidfile, 'r') as pid_f:
@@ -201,17 +195,18 @@ class Daemon:
         if pid:
             cmd = 'ps -Alf | grep {} | grep -v grep | wc -l'.format(pid)
             info, _ = subprocess.Popen(
-                cmd, shell=True, stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE).communicate()
+                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            ).communicate()
             count = int(info.rstrip('\n'))
 
             if count == 1:
                 msg = 'Status: Process {} is running at PID {}'.format(
-                    self.__class__.__name__, pid)
+                    self.__class__.__name__, pid
+                )
             else:
-                msg = (
-                    'Process {} is not running at PID {}, but {}'.format(
-                        self.__class__.__name__, pid, 'lock file exists'))
+                msg = 'Process {} is not running at PID {}, but {}'.format(
+                    self.__class__.__name__, pid, 'lock file exists'
+                )
         else:
             msg = 'Process {} is not running'.format(self.__class__.__name__)
 
@@ -235,8 +230,7 @@ class Daemon:
             pid = None
 
         if not pid:
-            msg = 'pidfile {} does not exist.  Daemon not running?'.format(
-                self.pidfile)
+            msg = 'pidfile {} does not exist.  Daemon not running?'.format(self.pidfile)
             self.log.error(msg)
             return  # not an error in a restart
 
@@ -259,23 +253,19 @@ class Daemon:
     # ======================
     # .............................
     def initialize(self):
-        """This function should be used to initialize the daemon process
-        """
+        """This function should be used to initialize the daemon process"""
 
     # .............................
     def on_update(self):
-        """Do whatever is necessary to update the daemon
-        """
+        """Do whatever is necessary to update the daemon"""
 
     # .............................
     def on_shutdown(self):
-        """Perform a graceful shutdown operation of the daemon process.
-        """
+        """Perform a graceful shutdown operation of the daemon process."""
         self.keep_running = False
 
     # .............................
     def run(self):
-        """Main run method for a daemon process.
-        """
+        """Main run method for a daemon process."""
         # while self.keep_running:
         # do stuff

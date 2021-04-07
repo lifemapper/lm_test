@@ -1,0 +1,2 @@
+git+git://github.com/lifemapper/lm_client@main#egg=lm_client
+git+git://github.com/lifemapper/ot_service_wrapper@main#egg=ot_service_wrapper

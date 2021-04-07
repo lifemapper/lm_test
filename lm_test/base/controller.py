@@ -14,11 +14,14 @@ DEFAULT_SLEEP_TIME = 10
 
 # .............................................................................
 class Controller(Daemon):
+    """Test controller."""
+
     _tests = []
+
     # .............................
     def initialize(self):
         """Initialize the test controller."""
-        #self._tests = []
+        # self._tests = []
         self._success_count = 0
         self._warn_count = 0
         self._fail_count = 0
@@ -38,8 +41,7 @@ class Controller(Daemon):
         Note: This is abstracted just a bit in case we want to sleep for
             "smart" intervals, such as until the next test is scheduled to run.
         """
-        print(
-            'Test controller sleeping for {} seconds...'.format(sleep_seconds))
+        print('Test controller sleeping for {} seconds...'.format(sleep_seconds))
         sleep(sleep_seconds)
         for test in self._tests:
             test.delay_time -= sleep_seconds
@@ -89,12 +91,14 @@ def main():
     """Main method for script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
-        description='Controls a pool of Makeflow processes')
+        description='Controls a pool of Makeflow processes',
+    )
 
     parser.add_argument(
-        'cmd', choices=[
-            DaemonCommands.START, DaemonCommands.STOP, DaemonCommands.RESTART],
-        help="The action that should be performed by the makeflow daemon")
+        'cmd',
+        choices=[DaemonCommands.START, DaemonCommands.STOP, DaemonCommands.RESTART],
+        help='The action that should be performed by the makeflow daemon',
+    )
 
     args = parser.parse_args()
 

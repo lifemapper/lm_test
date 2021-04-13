@@ -34,4 +34,3 @@ inputs look like?  What should the result be?
 ## Sample Data
 What files contain sample data for testing?  Which are inputs, which are
 outputs?
-

@@ -2,13 +2,13 @@
 import argparse
 import os
 import sys
-from tempfile import tempdir
+from tempfile import gettempdir
 from time import sleep
 
 from lm_test.base.daemon import Daemon, DaemonCommands
 from lm_test.base.test_base import LmTest, LmTestFailure, LmTestWarning
 
-CONTROLLER_PID_FILE = os.path.join(tempdir, 'controller.pid')
+CONTROLLER_PID_FILE = os.path.join(gettempdir(), 'controller.pid')
 DEFAULT_SLEEP_TIME = 10
 
 

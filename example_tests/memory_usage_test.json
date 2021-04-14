@@ -1,0 +1,10 @@
+{
+    "module": "lm_test.tests.memory_usage_test",
+    "test_class": "MemoryUsageTest",
+    "parameters": {
+       "warn_percent": 80,
+       "error_percent": 95,
+       "delay_time": 0,
+       "delay_interval": 300
+    }
+}

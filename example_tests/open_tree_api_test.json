@@ -1,0 +1,8 @@
+{
+    "module": "lm_test.tests.ot_client_test",
+    "test_class": "OpenTreeTest",
+    "parameters": {
+       "delay_time": 0,
+       "delay_interval": 300
+    }
+}

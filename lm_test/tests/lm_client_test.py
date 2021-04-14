@@ -37,17 +37,13 @@ class LmClientTest(test_base.LmTest):
     def run_layer_tests(self):
         """Run lm_client layer tests."""
         # Check that there is at least 1 layer available
-        try:
-            assert self.client.layer.count() > 0
-        except AssertionError as assert_error:
+        if self.client.layer.count() <= 0:
             raise test_base.LmTestFailure(
                 'Count layers for {}, no parameters was zero'.format(self.user_id)
-            ) from assert_error
+            )
 
         # Check that count returns zero for bad parameters
-        try:
-            assert self.client.layer.count(after_time='bad_value') == 0
-        except AssertionError as assert_error:
+        if self.client.layer.count(after_time='bad_value') > 0:
             raise test_base.LmTestFailure(
                 'Count layers with bad parameter returned > 0'
-            ) from assert_error
+            )

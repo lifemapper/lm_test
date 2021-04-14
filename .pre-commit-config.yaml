@@ -26,7 +26,6 @@ repos:
     hooks:
     - id: pylint
       args: [--rcfile=.github/linters/.python-lint]
-#      args: [-d C0411, -d E0401]
 -   repo: https://github.com/PyCQA/pydocstyle
     rev: 6.0.0
     hooks:

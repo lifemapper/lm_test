@@ -28,7 +28,11 @@ class Controller(Daemon):
 
     # .............................
     def add_tests(self, new_tests):
-        """Add a new test object to run."""
+        """Add a new test object to run.
+
+        Args:
+            new_tests (`list` of `LmTest`): A list of test objects to run.
+        """
         if isinstance(new_tests, LmTest):
             new_tests = [new_tests]
         self._tests.extend(new_tests)
@@ -40,6 +44,9 @@ class Controller(Daemon):
 
         Note: This is abstracted just a bit in case we want to sleep for
             "smart" intervals, such as until the next test is scheduled to run.
+
+        Args:
+            sleep_seconds (`int`, optional): The number of seconds to sleep.
         """
         print('Test controller sleeping for {} seconds...'.format(sleep_seconds))
         sleep(sleep_seconds)
@@ -64,7 +71,11 @@ class Controller(Daemon):
 
     # .............................
     def run_test(self, test_to_run):
-        """Run a test and process the result."""
+        """Run a test and process the result.
+
+        Args:
+            test_to_run (`LmTest`): The test that should be run.
+        """
         notify_message = None
         try:
             # Tell the test to run

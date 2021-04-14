@@ -26,7 +26,12 @@ class Daemon:
 
     # .............................
     def __init__(self, pidfile, log=None):
-        """Construct a Daemon instance."""
+        """Construct a Daemon instance.
+
+        Args:
+            pidfile (str): A file location to write the running process ID.
+            log (logging.logger, optional): A logging object.
+        """
         self.pidfile = pidfile
         # Default variable to indicate that the process should continue
         self.keep_running = True
@@ -143,7 +148,11 @@ class Daemon:
 
     # .............................
     def stop(self):
-        """Stop the daemon."""
+        """Stop the daemon.
+
+        Raises:
+            Exception: Raised if the PID file cannot be deleted.
+        """
         # Get the pid from the pidfile
         try:
             pid = None

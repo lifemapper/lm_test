@@ -70,18 +70,32 @@ class OpenTreeTest(test_base.LmTest):
 
     # .............................
     def __init__(self, delay_time=0, delay_interval=3600):
-        """Construct an OpenTreeTest instance."""
+        """Construct an OpenTreeTest instance.
+
+        Args:
+            delay_time (`int`): The number of seconds to wait before running this test.
+            delay_interval (`int`): The number of seconds to wait between runs.
+        """
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.delay_interval = delay_interval
 
     # .............................
     def __repr__(self):
-        """Return a string representation of this instance."""
+        """Return a string representation of this instance.
+
+        Returns:
+            str: A string representation of this instance.
+        """
         return 'Open Tree Service Test'
 
     # .............................
     def run_test(self):
-        """Run open tree tests."""
+        """Run open tree tests.
+
+        Raises:
+            LmTestFailure: Raised if no Open Tree IDs are returned or fail to induce
+                subtree.
+        """
         self.add_new_test(OpenTreeTest(delay_time=self.delay_interval))
         test_ids = TEST_GBIF_IDS
         shuffle(test_ids)

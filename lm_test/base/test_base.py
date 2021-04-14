@@ -5,14 +5,10 @@
 class LmTestFailure(Exception):
     """Exception class to raise when a test fails."""
 
-    pass
-
 
 # .............................................................................
 class LmTestWarning(Warning):
     """Warning class to raise when a test ends in a warning status."""
-
-    pass
 
 
 # .............................................................................
@@ -21,7 +17,7 @@ class LmTest:
 
     # .............................
     def __init__(self, delay_time=0):
-        """Constructor for LmTest.
+        """Construct an instance of LmTest.
 
         Args:
             delay_time (int): A minimum number of seconds to wait before
@@ -47,7 +43,8 @@ class LmTest:
         return self.new_tests
 
     # .............................
-    def run_test(self):
+    @staticmethod
+    def run_test():
         """Run the test."""
         raise LmTestFailure('run_test not implemented in base class')
 

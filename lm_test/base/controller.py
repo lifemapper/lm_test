@@ -88,7 +88,7 @@ class Controller(Daemon):
 
 # .............................................................................
 def main():
-    """Main method for script."""
+    """Run the script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
         description='Controls a pool of Makeflow processes',

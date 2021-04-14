@@ -41,7 +41,7 @@ TESTS_TO_RUN = [
 
 # .............................................................................
 def main():
-    """Main method for script."""
+    """Run the main method for the script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
         description='Controls a pool of Makeflow processes',

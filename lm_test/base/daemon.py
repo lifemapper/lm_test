@@ -1,5 +1,4 @@
-"""This module contains a base-Daemon class
-"""
+"""This module contains a base-Daemon class."""
 import atexit
 import logging
 import os
@@ -11,7 +10,7 @@ import time
 
 # .............................................................................
 class DaemonCommands:
-    """Class containing command constants"""
+    """Class containing command constants."""
 
     START = 'start'
     STOP = 'stop'
@@ -27,6 +26,7 @@ class Daemon:
 
     # .............................
     def __init__(self, pidfile, log=None):
+        """Construct a Daemon instance."""
         self.pidfile = pidfile
         # Default variable to indicate that the process should continue
         self.keep_running = True
@@ -51,7 +51,7 @@ class Daemon:
     # ============================
     # .............................
     def daemonize(self):
-        """Do the UNIX double-fork magic
+        """Do the UNIX double-fork magic.
 
         See:
             Stevens' "Advanced Programming in the UNIX Environment"
@@ -92,12 +92,12 @@ class Daemon:
 
     # .............................
     def delpid(self):
-        """Final cleanup operation of removing the pid file"""
+        """Clean up by removing PID file."""
         os.remove(self.pidfile)
 
     # .............................
     def _receive_signal(self, sig_num, stack):
-        """Handler used to receive signals
+        """Handle signals.
 
         Args:
             sig_num (int): The signal received
@@ -120,7 +120,7 @@ class Daemon:
     # ============================
     # .............................
     def start(self):
-        """Start the daemon"""
+        """Start the daemon."""
         # Check for a pidfile to see if the daemon already runs
         try:
             with open(self.pidfile, 'r') as pid_f:
@@ -143,7 +143,7 @@ class Daemon:
 
     # .............................
     def stop(self):
-        """Stop the daemon"""
+        """Stop the daemon."""
         # Get the pid from the pidfile
         try:
             pid = None
@@ -178,13 +178,13 @@ class Daemon:
 
     # .............................
     def restart(self):
-        """Restart the daemon"""
+        """Restart the daemon."""
         self.stop()
         self.start()
 
     # .............................
     def status(self):
-        """Check the status of the daemon"""
+        """Check the status of the daemon."""
         # Check for a pidfile to see if the daemon is running
         try:
             with open(self.pidfile, 'r') as pid_f:
@@ -253,11 +253,11 @@ class Daemon:
     # ======================
     # .............................
     def initialize(self):
-        """This function should be used to initialize the daemon process"""
+        """Initialize the daemon process."""
 
     # .............................
     def on_update(self):
-        """Do whatever is necessary to update the daemon"""
+        """Do whatever is necessary to update the daemon."""
 
     # .............................
     def on_shutdown(self):
@@ -266,6 +266,6 @@ class Daemon:
 
     # .............................
     def run(self):
-        """Main run method for a daemon process."""
+        """Run the daemon process."""
         # while self.keep_running:
         # do stuff

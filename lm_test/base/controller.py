@@ -2,13 +2,13 @@
 import argparse
 import os
 import sys
+from tempfile import tempdir
 from time import sleep
 
 from lm_test.base.daemon import Daemon, DaemonCommands
 from lm_test.base.test_base import LmTest, LmTestFailure, LmTestWarning
 
-# TODO: Find a better place for this pid file, or at least more generic
-CONTROLLER_PID_FILE = '/tmp/controller.pid'
+CONTROLLER_PID_FILE = os.path.join(tempdir, 'controller.pid')
 DEFAULT_SLEEP_TIME = 10
 
 
@@ -88,7 +88,7 @@ class Controller(Daemon):
 
 # .............................................................................
 def main():
-    """Main method for script."""
+    """Run the script."""
     parser = argparse.ArgumentParser(
         prog='Lifemapper Makeflow Daemon (Matt Daemon)',
         description='Controls a pool of Makeflow processes',

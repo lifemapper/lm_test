@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Module setup file for packaging and installation."""
 from setuptools import setup
 
 with open('README.md') as f:
@@ -6,7 +7,7 @@ with open('README.md') as f:
 
 
 with open('LICENSE') as f:
-    license = f.read()
+    module_license = f.read()
 
 setup(
     name='Lifemapper Testing Library',
@@ -16,5 +17,5 @@ setup(
     author='CJ Grady',
     author_email='cjgrady@ku.edu',
     url='https://github.com/lifemapper/lm_test',
-    license=license,
+    license=module_license,
 )

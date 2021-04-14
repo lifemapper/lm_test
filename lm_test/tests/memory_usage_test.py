@@ -10,6 +10,7 @@ class MemoryUsageTest(test_base.LmTest):
 
     # .............................
     def __init__(self, warn_percent, error_percent, delay_time=0, delay_interval=300):
+        """Construct a memory usage test."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._warn_percent = warn_percent
         self._error_percent = error_percent
@@ -17,6 +18,7 @@ class MemoryUsageTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return 'Memory Usage Test ({}% warn, {}% error, {} second delay)'.format(
             self._warn_percent, self._error_percent, self._delay_interval
         )
@@ -24,10 +26,10 @@ class MemoryUsageTest(test_base.LmTest):
     # .............................
     def run_test(self):
         """Run the test."""
-        total_memory, used_memory, free_memory = map(
+        total_memory, used_memory, _ = map(
             int, os.popen('free -t -m').readlines()[-1].split()[1:]
         )
-        used_percent = 100 * used_memory / free_memory
+        used_percent = 100 * used_memory / total_memory
         self.add_new_test(
             MemoryUsageTest(
                 self._warn_percent,
@@ -40,7 +42,7 @@ class MemoryUsageTest(test_base.LmTest):
             raise test_base.LmTestFailure(
                 'Current memory usage {:.2f} percent'.format(used_percent)
             )
-        elif used_percent >= self._warn_percent:
+        if used_percent >= self._warn_percent:
             raise test_base.LmTestWarning(
                 'Current memory usage {:.2f} percent'.format(used_percent)
             )

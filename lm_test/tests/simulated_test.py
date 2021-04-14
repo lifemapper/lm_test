@@ -1,4 +1,4 @@
-"""Test class for simulated backend calls"""
+"""Test class for simulated back-end calls."""
 from random import randint
 
 import lm_test.base.test_base as test_base
@@ -17,6 +17,7 @@ class SimulatedSubmissionTest(test_base.LmTest):
         delay_time=0,
         delay_interval=3600,
     ):
+        """Construct the simulated submission test."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.submit_pass = submit_pass
         self.wait_timeout = wait_timeout
@@ -29,11 +30,12 @@ class SimulatedSubmissionTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return self.test_name
 
     # .............................
     def run_test(self):
-        """Run the test"""
+        """Run the test."""
         if self.submit_pass:
             wait_id = randint(0, 100)
             self.add_new_test(
@@ -51,6 +53,7 @@ class SimulatedWaitTest(test_base.LmTest):
     def __init__(
         self, wait_id, wait_timeout, validate_pass, delay_time=0, delay_interval=10
     ):
+        """Construct the instance."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.wait_id = wait_id
         self.wait_timeout = wait_timeout
@@ -64,11 +67,12 @@ class SimulatedWaitTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return self.test_name
 
     # .............................
     def run_test(self):
-        """Run the test"""
+        """Run the test."""
         if self.wait_timeout < 0:
             raise test_base.LmTestFailure(
                 'Wait timeout reached for job {}'.format(self.wait_id)
@@ -91,6 +95,7 @@ class SimulatedValidateTest(test_base.LmTest):
 
     # .............................
     def __init__(self, wait_id, validate_pass, delay_time=0, delay_interval=60):
+        """Construct the instance."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self.wait_id = wait_id
         self.validate_pass = validate_pass
@@ -102,11 +107,12 @@ class SimulatedValidateTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return self.test_name
 
     # .............................
     def run_test(self):
-        """Run the test"""
+        """Run the test."""
         if not self.validate_pass:
             raise test_base.LmTestFailure(
                 'Validation failed for job {}'.format(self.wait_id)

@@ -131,6 +131,7 @@ dmypy.json
 # Eclipse
 .project
 .pydevproject
+.settings/
 
 # JetBrains IDE
 /.idea

@@ -29,6 +29,7 @@ class OpenAPITest(test_base.LmTest):
         delay_time: int = 0,
         delay_interval: int = 3600,
     ):
+        """Construct an OpenAPI test."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._open_api_schema_location = open_api_schema_location
         self._max_urls_per_endpoint = max_urls_per_endpoint
@@ -37,6 +38,7 @@ class OpenAPITest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return (
             'Validating API against the OpenAPI schema (%d urls per endpoint)'
         ) % self._max_urls_per_endpoint
@@ -44,7 +46,6 @@ class OpenAPITest(test_base.LmTest):
     # .............................
     def run_test(self):
         """Run the test."""
-
         error_messages = []
 
         def error_callback(*args):

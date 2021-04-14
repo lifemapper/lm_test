@@ -1,4 +1,4 @@
-"""Run pytest for a directory / repository"""
+"""Run pytest for a directory / repository."""
 import os
 
 import lm_test.base.test_base as test_base
@@ -7,10 +7,11 @@ import pytest
 
 # .............................................................................
 class PytestTest(test_base.LmTest):
-    """Run pytest for a repository"""
+    """Run pytest for a repository."""
 
     # .............................
     def __init__(self, test_dir):
+        """Construct a Pytest instance."""
         test_base.LmTest.__init__(self)
         self._test_dir = test_dir
 

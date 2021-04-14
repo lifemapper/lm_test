@@ -12,6 +12,7 @@ class DiskUsageTest(test_base.LmTest):
     def __init__(
         self, test_disk, warn_percent, error_percent, delay_time=0, delay_interval=300
     ):
+        """Construct a disk usage test."""
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._test_disk = test_disk
         self._warn_percent = warn_percent
@@ -20,6 +21,7 @@ class DiskUsageTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
+        """Return a string representation of this instance."""
         return 'Disk Usage Test for {} ({}% warn, {}% error, {} second delay)'.format(
             self._test_disk,
             self._warn_percent,
@@ -47,7 +49,7 @@ class DiskUsageTest(test_base.LmTest):
                     self._test_disk, used_percent
                 )
             )
-        elif used_percent >= self._warn_percent:
+        if used_percent >= self._warn_percent:
             raise test_base.LmTestWarning(
                 'Current disk usage for {}: {:.2f} percent'.format(
                     self._test_disk, used_percent

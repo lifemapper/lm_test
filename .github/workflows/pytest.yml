@@ -42,4 +42,18 @@ jobs:
           github-token: ${{ secrets.github_token }}
         run: |
           PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report xml
-          coveralls
+
+      # Coveralls
+      - name: Coveralls
+        uses: AndreMiras/coveralls-python-action@develop
+        with:
+          parallel: true
+          flag-name: PyTests
+  coveralls_finish:
+    needs: pytest
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls finished
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel-finished: true

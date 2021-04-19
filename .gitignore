@@ -139,5 +139,3 @@ dmypy.json
 # Open API Schema file
 /open_api.yaml
 
-# Nano temporary files
-*.swp

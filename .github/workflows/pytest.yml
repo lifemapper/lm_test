@@ -38,24 +38,8 @@ jobs:
 
       # Run pytest
       - name: Test with Pytest
-        run: |
-          PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report xml
-      # Coveralls Paralle
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.github_token }}
-          flag-name: run-${{ matrix.python_version }}
-          parallel: true
-          path-to-lcov: coverage.xml
-
-  finish:
-    needs: pytest
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
-        path-to-lcov: coverage.xml
+        run: |
+          PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report xml
+          coveralls

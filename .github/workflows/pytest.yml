@@ -39,7 +39,7 @@ jobs:
       # Run pytest
       - name: Test with Pytest
         run: |
-          PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report xml
+          PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report term-missing
 
       # Coveralls
       - name: Coveralls

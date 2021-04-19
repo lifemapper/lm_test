@@ -1,0 +1,11 @@
+{
+    "module": "lm_test.tests.disk_usage_test",
+    "test_class": "DiskUsageTest",
+    "parameters": {
+       "test_disk": "/",
+       "warn_percent": 50,
+       "error_percent": 90,
+       "delay_time": 0,
+       "delay_interval": 300
+    }
+}

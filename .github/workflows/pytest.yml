@@ -40,4 +40,9 @@ jobs:
       - name: Test with Pytest
         run: |
           PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report term-missing
-          coveralls
+
+      # Coveralls
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

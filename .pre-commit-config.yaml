@@ -36,14 +36,6 @@ repos:
     hooks:
     - id: darglint
       args: ['-v2', '-sgoogle']
--   repo: local
-    hooks:
-    -   id: tests
-        name: Run PyTest tests
-        entry: pytest tests/ -v --cov lmpy --cov-report term-missing
-        language: system
-        types: [python]
-        stages: [push]
 #-   repo: https://github.com/PyCQA/bandit
 #    rev: 1.7.0
 #    hooks:

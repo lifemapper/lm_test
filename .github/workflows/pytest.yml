@@ -38,8 +38,6 @@ jobs:
 
       # Run pytest
       - name: Test with Pytest
-        with:
-          github-token: ${{ secrets.github_token }}
         run: |
           PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report xml
 

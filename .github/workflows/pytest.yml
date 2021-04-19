@@ -40,4 +40,4 @@ jobs:
       - name: Test with Pytest
         run: |
           PYTHONPATH=. pytest tests/ -v --cov lm_test --cov-report term-missing
-          # coveralls
+          coveralls

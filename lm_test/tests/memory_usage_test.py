@@ -10,7 +10,14 @@ class MemoryUsageTest(test_base.LmTest):
 
     # .............................
     def __init__(self, warn_percent, error_percent, delay_time=0, delay_interval=300):
-        """Construct a memory usage test."""
+        """Construct a memory usage test.
+
+        Args:
+            warn_percent (`int`): Threshold for raising warnings for memory usage.
+            error_percent (`int`): Threshold for raising error for memory usage.
+            delay_time (`int`): The number of seconds to wait before running this test.
+            delay_interval (`int`): The number of seconds to wait between runs.
+        """
         test_base.LmTest.__init__(self, delay_time=delay_time)
         self._warn_percent = warn_percent
         self._error_percent = error_percent
@@ -18,14 +25,23 @@ class MemoryUsageTest(test_base.LmTest):
 
     # .............................
     def __repr__(self):
-        """Return a string representation of this instance."""
+        """Return a string representation of this instance.
+
+        Returns:
+            str: A string representation of this instance.
+        """
         return 'Memory Usage Test ({}% warn, {}% error, {} second delay)'.format(
             self._warn_percent, self._error_percent, self._delay_interval
         )
 
     # .............................
     def run_test(self):
-        """Run the test."""
+        """Run the test.
+
+        Raises:
+            LmTestFailure: Raised if memory usage is above error threshold.
+            LmTestWarning: Raised if memory usage is above warning threshold.
+        """
         total_memory, used_memory, _ = map(
             int, os.popen('free -t -m').readlines()[-1].split()[1:]
         )

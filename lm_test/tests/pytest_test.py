@@ -11,13 +11,22 @@ class PytestTest(test_base.LmTest):
 
     # .............................
     def __init__(self, test_dir):
-        """Construct a Pytest instance."""
+        """Construct a Pytest instance.
+
+        Args:
+            test_dir (str): Directory containing PyTest tests.
+        """
         test_base.LmTest.__init__(self)
         self._test_dir = test_dir
 
     # .............................
     def run_test(self):
-        """Run the test."""
+        """Run the test.
+
+        Raises:
+            LmTestWarning: Raised if PyTest ends with exit status 2 or 5.
+            LmTestFailure: Raised if PyTest returns any other positive exit status.
+        """
         print('run pytest test')
         # Get the current working directory
         old_cwd = os.getcwd()
@@ -31,7 +40,7 @@ class PytestTest(test_base.LmTest):
             raise test_base.LmTestWarning(
                 'Pytest {}, {}'.format(self._test_dir, res.name)
             )
-        elif res.value > 0:
+        if res.value > 0:
             raise test_base.LmTestFailure(
                 'Pytest {}, {}'.format(self._test_dir, res.name)
             )

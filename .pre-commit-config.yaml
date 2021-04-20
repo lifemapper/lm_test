@@ -30,6 +30,16 @@ repos:
     rev: 6.0.0
     hooks:
     - id: pydocstyle
+      args: ['--convention=google']
+-   repo: https://github.com/terrencepreilly/darglint
+    rev: v1.8.0
+    hooks:
+    - id: darglint
+      args: ['-v2', '-sgoogle']
+-   repo: https://github.com/maxxxxxdlp/mirrors-jscpd
+    rev: v3.3.25
+    hooks:
+    - id: jscpd
 #-   repo: https://github.com/PyCQA/bandit
 #    rev: 1.7.0
 #    hooks:

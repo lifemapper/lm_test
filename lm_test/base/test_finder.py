@@ -7,7 +7,14 @@ import os
 
 # .....................................................................................
 def find_tests(test_dir):
-    """Find tests specified in JSON files in test_dir."""
+    """Find tests specified in JSON files in test_dir.
+
+    Args:
+        test_dir (str): Directory containing JSON test configuration files.
+
+    Returns:
+        list: A list of LmTest testing objects.
+    """
     tests = []
     for test_fn in glob.glob(os.path.join(test_dir, '*.json')):
         with open(test_fn, mode='rt') as in_file:

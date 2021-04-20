@@ -36,6 +36,10 @@ repos:
     hooks:
     - id: darglint
       args: ['-v2', '-sgoogle']
+-   repo: https://github.com/maxxxxxdlp/mirrors-jscpd
+    rev: v3.3.25
+    hooks:
+    - id: jscpd
 #-   repo: https://github.com/PyCQA/bandit
 #    rev: 1.7.0
 #    hooks:

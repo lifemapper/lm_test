@@ -10,8 +10,8 @@ with open('LICENSE') as f:
     module_license = f.read()
 
 setup(
-    name='Lifemapper Testing Library',
-    version='0.1.0',
+    name='lm_test',
+    version='1.0.0-beta.1',
     description='Lifemapper Testing Library',
     long_description=readme,
     author='CJ Grady',

@@ -1,0 +1,8 @@
+version: "1"
+rules:
+  - base: main
+    upstream: lifemapper:main
+    mergeMethod: hardreset
+  - base: version-1
+    upstream: lifemapper:version-1
+    mergeMethod: hardreset

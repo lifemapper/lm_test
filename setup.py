@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module setup file for packaging and installation."""
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open('README.md') as f:
     readme = f.read()
@@ -11,11 +11,20 @@ with open('LICENSE') as f:
 
 setup(
     name='lm_test',
-    version='1.0.0-beta.1',
+    version='1.0.0b2',
     description='Lifemapper Testing Library',
     long_description=readme,
     author='CJ Grady',
     author_email='cjgrady@ku.edu',
     url='https://github.com/lifemapper/lm_test',
     license=module_license,
+    #package_dir={'': 'lm_test'},
+    packages=find_packages(),
+    python_requires='>=3.6, <4',
+    #entry_points={
+    #    'console_scripts': [
+    #        'run_controller=scripts/run_controller:main',
+    #    ],
+    #},
+    scripts=['scripts/run_controller.py'],
 )

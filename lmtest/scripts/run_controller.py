@@ -2,9 +2,9 @@
 import argparse
 import sys
 
-from lm_test.base.controller import CONTROLLER_PID_FILE, Controller
-from lm_test.base.daemon import DaemonCommands
-from lm_test.base.test_finder import find_tests
+from lmtest.base.controller import CONTROLLER_PID_FILE, Controller
+from lmtest.base.daemon import DaemonCommands
+from lmtest.base.test_finder import find_tests
 
 
 # .............................................................................

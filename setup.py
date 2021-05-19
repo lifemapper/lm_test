@@ -25,7 +25,7 @@ setup(
     python_requires='>=3.6, <4',
     entry_points={
         'console_scripts': [
-            'run_controller=scripts.run_controller:main',
+            'run_controller=lmtest.scripts.run_controller:main',
         ],
     },
     #scripts=['scripts/run_controller.py'],

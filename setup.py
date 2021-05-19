@@ -10,21 +10,23 @@ with open('LICENSE') as f:
     module_license = f.read()
 
 setup(
-    name='lm_test',
-    version='1.0.0b2',
+    name='lmtest',
+    version='1.0.0b3',
     description='Lifemapper Testing Library',
     long_description=readme,
     author='CJ Grady',
     author_email='cjgrady@ku.edu',
     url='https://github.com/lifemapper/lm_test',
     license=module_license,
-    #package_dir={'': 'lm_test'},
     packages=find_packages(),
+    package_dir={
+        'example_tests': ['*.json'],
+    },
     python_requires='>=3.6, <4',
-    #entry_points={
-    #    'console_scripts': [
-    #        'run_controller=scripts/run_controller:main',
-    #    ],
-    #},
-    scripts=['scripts/run_controller.py'],
+    entry_points={
+        'console_scripts': [
+            'run_controller=scripts.run_controller:main',
+        ],
+    },
+    #scripts=['scripts/run_controller.py'],
 )

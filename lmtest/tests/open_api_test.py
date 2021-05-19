@@ -9,7 +9,7 @@ provided as the first argument
 """
 import json
 
-import lm_test.base.test_base as test_base
+import lmtest.base.test_base as test_base
 import open_api_tools.test.full_test as full_test
 
 

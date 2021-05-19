@@ -1,7 +1,7 @@
 """Test class for lm_client."""
 from random import randint, shuffle
 
-import lm_test.base.test_base as test_base
+import lmtest.base.test_base as test_base
 from ot_service_wrapper.open_tree import (
     get_ottids_from_gbifids,
     induced_subtree,

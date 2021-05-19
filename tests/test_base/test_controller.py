@@ -1,5 +1,5 @@
 """Test the controller module."""
-from lm_test.base.controller import CONTROLLER_PID_FILE, Controller
+from lmtest.base.controller import CONTROLLER_PID_FILE, Controller
 
 
 # .....................................................................................

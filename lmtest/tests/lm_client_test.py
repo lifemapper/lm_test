@@ -1,7 +1,7 @@
 """Test class for lm_client."""
 
-import lm_test.base.test_base as test_base
-from lm_client.client.client import LmApiClient
+import lmtest.base.test_base as test_base
+from lmclient.client.client import LmApiClient
 
 
 # .............................................................................

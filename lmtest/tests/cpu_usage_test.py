@@ -1,5 +1,5 @@
 """Test memory usage."""
-import lm_test.base.test_base as test_base
+import lmtest.base.test_base as test_base
 import psutil
 
 

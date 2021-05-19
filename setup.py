@@ -28,5 +28,4 @@ setup(
             'run_controller=lmtest.scripts.run_controller:main',
         ],
     },
-    #scripts=['scripts/run_controller.py'],
 )

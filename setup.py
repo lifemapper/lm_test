@@ -11,7 +11,7 @@ with open('LICENSE') as f:
 
 setup(
     name='lmtest',
-    version='1.0.0b3',
+    version='1.0.0b4',
     description='Lifemapper Testing Library',
     long_description=readme,
     author='CJ Grady',
@@ -28,4 +28,7 @@ setup(
             'run_controller=lmtest.scripts.run_controller:main',
         ],
     },
+    install_requires=[
+        'psutil'
+    ]
 )

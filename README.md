@@ -1,19 +1,59 @@
-# lm_test
-Fledgling repository for system testing
+# Lifemapper Testing Tool _(lmtest)_
 
-This tool utilizes a test controller module that schedules and runs tests.
+A tool for performing automated tests with Python.
 
-----
+This tool utilizes a test controller that schedules, runs, and evaluates tests.
 
-## Running
+## Table of Contents
 
-### Start the controller
-```$ python3 scripts/run_controller.py start```
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Stop the controller
-```$ python3 scripts/run_controller.py stop```
+## Background
 
-----
+This tool was created to monitor our servers to catch unexpected failures in our provided web services, database connections, machine conditions, etc.
+We find this tool to be useful for monitoring these elements and catching transient problems that may evolve over time (example: Full disk or changes in connected APIs).
+
+## Install
+
+```sh
+pip install lmtest-1.0.0-py3-none-any.whl
+```
+
+## Usage
+
+### Start controller
+```sh
+run_controller -t TEST_DIRECTORY -l LOG_FILE start
+```
+
+This command starts the test controller using the tests configured in the `TEST_DIRECTORY` directory and logs notifications to `LOG_FILE`.
+
+### Stop controller
+```sh
+run_controller stop
+```
+
+This command will stop the controller.
+
+## Contributing
+
+We welcome contributions!  [See our current issues](https://github.com/lifemapper/lmtest/issues) and please read 
+our [Contributing guide](CONTRIBUTING.md) and [our code of conduct](CODE_OF_CONDUCT.md).
+
+
+## License
+
+See [GPL3 License](LICENSE)
+
+
+
+
+
+
 
 ## Test Controller
 

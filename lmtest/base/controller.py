@@ -1,14 +1,11 @@
 """Module containing test controller class."""
-import argparse
 import os
-import sys
 from tempfile import gettempdir
-from time import sleep
+from time import sleep, time
 
-from lmtest.base.daemon import Daemon, DaemonCommands
+from lmtest.base.daemon import Daemon
 from lmtest.base.test_base import LmTest, LmTestFailure, LmTestWarning
 from lmtest.notifications.console_notifier import ConsoleNotifier
-from lmtest.notifications.log_notifier import LogNotifier
 
 
 CONTROLLER_PID_FILE = os.path.join(gettempdir(), 'controller.pid')
@@ -20,6 +17,7 @@ class Controller(Daemon):
     """Test controller."""
 
     _tests = []
+    report_interval = 60 * 60 * 24  # Default to one day
 
     # .............................
     def initialize(self):
@@ -58,11 +56,44 @@ class Controller(Daemon):
             test.delay_time -= sleep_seconds
 
     # .............................
+    def report(self):
+        """Report the status of the tests that were ran in the last interval."""
+        cur_time = time()
+        old_time = cur_time - self.report_interval
+
+        report_lines = [
+            'In the approximate interval of {} to {}\n'.format(old_time, cur_time),
+            '  {} total tests were run'.format(
+                self._success_count + self._warn_count + self._fail_count
+            ),
+            '  {} tests completed successfully'.format(self._success_count),
+            '  {} tests ended with a warning'.format(self._warn_count),
+            '  {} tests failed'.format(self._fail_count),
+            '',
+            'There are currently {} tests in the queue'.format(len(self._tests)),
+            '',
+        ]
+
+        self._fail_count = 0
+        self._success_count = 0
+        self._warn_count = 0
+
+        report_msg = '\n'.join(report_lines)
+        self.notifier.notify_report(report_msg)
+
+    # .............................
     def run(self):
         """Run the test controller until told to stop."""
         print('Running Test Controller')
+        last_time = time()
         try:
             while self.keep_running and os.path.exists(self.pidfile):
+                # Check if we should report
+                curr_time = time()
+                if curr_time - last_time > self.report_interval:
+                    # Reset last time
+                    last_time = time()
+                    self.report()
                 # Get the first test if it exists and run it
                 if len(self._tests) > 0 and self._tests[0].delay_time <= 0:
                     next_test = self._tests.pop(0)
@@ -111,45 +142,11 @@ class Controller(Daemon):
         """
         self.notifier = notifier
 
+    # .............................
+    def set_report_interval(self, interval_seconds):
+        """Set the Controller instances reporting interval.
 
-# .............................................................................
-def main():
-    """Run the script."""
-    parser = argparse.ArgumentParser(
-        prog='Lifemapper Makeflow Daemon (Matt Daemon)',
-        description='Controls a pool of Makeflow processes',
-    )
-
-    parser.add_argument(
-        '-l', '--log_file', type=str,
-        help='File path to log notifications to.  Use console if not provided.'
-    )
-    parser.add_argument(
-        'cmd',
-        choices=[DaemonCommands.START, DaemonCommands.STOP, DaemonCommands.RESTART],
-        help='The action that should be performed by the makeflow daemon',
-    )
-
-    args = parser.parse_args()
-
-    controller_daemon = Controller(CONTROLLER_PID_FILE)
-
-    if args.cmd.lower() == DaemonCommands.START:
-        print('Start')
-        # Check to see if notifier configuration is provided
-        if args.log_file is not None:
-            controller_daemon.set_notifier(LogNotifier(args.log_file))
-        controller_daemon.start()
-    elif args.cmd.lower() == DaemonCommands.STOP:
-        print('Stop')
-        controller_daemon.stop()
-    elif args.cmd.lower() == DaemonCommands.RESTART:
-        controller_daemon.restart()
-    else:
-        print(('Unknown command: {}'.format(args.cmd.lower())))
-        sys.exit(2)
-
-
-# .............................................................................
-if __name__ == "__main__":
-    main()
+        Args:
+            interval_seconds (int): The number of seconds to wait between reports.
+        """
+        self.report_interval = interval_seconds

@@ -27,6 +27,15 @@ class LogNotifier:
         self.logger.error(message)
 
     # ...........................
+    def notify_report(self, message):
+        """Emit a report notification.
+
+        Args:
+            message (str): A notification message to emit.
+        """
+        self.logger.info(message)
+
+    # ...........................
     def notify_warning(self, message):
         """Emit a notification of warning.
 

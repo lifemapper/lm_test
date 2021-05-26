@@ -17,6 +17,16 @@ class ConsoleNotifier:
 
     # ...........................
     @staticmethod
+    def notify_report(message):
+        """Emit a report notification.
+
+        Args:
+            message (str): A notification message to emit.
+        """
+        print(message)
+
+    # ...........................
+    @staticmethod
     def notify_warning(message):
         """Emit a notification of warning.
 

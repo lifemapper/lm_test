@@ -11,6 +11,10 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 0
+    - name: Install documentation dependencies
+      uses: py-actions/py-dependency-install@v2
+      with:
+        path: "requirements-docs.txt"
     - name: Build and Commit
       uses: sphinx-notes/pages@1.0
       with:

@@ -65,7 +65,7 @@ package where the test class you wish to run is found.  The ```test_class``` par
 An example test configuration is:
 ```json
 {
-    "module": "lm_test.tests.memory_usage_test",
+    "module": "lmtest.tests.memory_usage_test",
     "test_class": "MemoryUsageTest",
     "parameters": {
        "warn_percent": 80,

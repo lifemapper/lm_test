@@ -17,7 +17,7 @@ Python.
    pages/usage
    pages/contributing
 
-   modules
+   source/modules
 
 
 Indices and tables

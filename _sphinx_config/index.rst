@@ -16,7 +16,7 @@ Python.
    pages/installation
    pages/usage
    pages/contributing
-   
+
    modules
 
 

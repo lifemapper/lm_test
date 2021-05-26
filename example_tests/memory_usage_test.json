@@ -1,5 +1,5 @@
 {
-    "module": "lm_test.tests.memory_usage_test",
+    "module": "lmtest.tests.memory_usage_test",
     "test_class": "MemoryUsageTest",
     "parameters": {
        "warn_percent": 80,

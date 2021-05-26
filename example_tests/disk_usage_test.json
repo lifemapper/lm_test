@@ -1,5 +1,5 @@
 {
-    "module": "lm_test.tests.disk_usage_test",
+    "module": "lmtest.tests.disk_usage_test",
     "test_class": "DiskUsageTest",
     "parameters": {
        "test_disk": "/",

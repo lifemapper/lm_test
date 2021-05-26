@@ -158,16 +158,13 @@
             
   <h1>Source code for lmtest.base.controller</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Module containing test controller class.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">gettempdir</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">time</span>
 
-<span class="kn">from</span> <span class="nn">lmtest.base.daemon</span> <span class="k">import</span> <span class="n">Daemon</span><span class="p">,</span> <span class="n">DaemonCommands</span>
+<span class="kn">from</span> <span class="nn">lmtest.base.daemon</span> <span class="k">import</span> <span class="n">Daemon</span>
 <span class="kn">from</span> <span class="nn">lmtest.base.test_base</span> <span class="k">import</span> <span class="n">LmTest</span><span class="p">,</span> <span class="n">LmTestFailure</span><span class="p">,</span> <span class="n">LmTestWarning</span>
 <span class="kn">from</span> <span class="nn">lmtest.notifications.console_notifier</span> <span class="k">import</span> <span class="n">ConsoleNotifier</span>
-<span class="kn">from</span> <span class="nn">lmtest.notifications.log_notifier</span> <span class="k">import</span> <span class="n">LogNotifier</span>
 
 
 <span class="n">CONTROLLER_PID_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s1">&#39;controller.pid&#39;</span><span class="p">)</span>
@@ -179,6 +176,7 @@
     <span class="sd">&quot;&quot;&quot;Test controller.&quot;&quot;&quot;</span>
 
     <span class="n">_tests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">report_interval</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span>  <span class="c1"># Default to one day</span>
 
     <span class="c1"># .............................</span>
 <div class="viewcode-block" id="Controller.initialize"><a class="viewcode-back" href="../../../source/lmtest.base.html#lmtest.base.controller.Controller.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -217,11 +215,44 @@
             <span class="n">test</span><span class="o">.</span><span class="n">delay_time</span> <span class="o">-=</span> <span class="n">sleep_seconds</span></div>
 
     <span class="c1"># .............................</span>
+<div class="viewcode-block" id="Controller.report"><a class="viewcode-back" href="../../../source/lmtest.base.html#lmtest.base.controller.Controller.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report the status of the tests that were ran in the last interval.&quot;&quot;&quot;</span>
+        <span class="n">cur_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">old_time</span> <span class="o">=</span> <span class="n">cur_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_interval</span>
+
+        <span class="n">report_lines</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;In the approximate interval of </span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old_time</span><span class="p">,</span> <span class="n">cur_time</span><span class="p">),</span>
+            <span class="s1">&#39;  </span><span class="si">{}</span><span class="s1"> total tests were run&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_success_count</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warn_count</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fail_count</span>
+            <span class="p">),</span>
+            <span class="s1">&#39;  </span><span class="si">{}</span><span class="s1"> tests completed successfully&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_success_count</span><span class="p">),</span>
+            <span class="s1">&#39;  </span><span class="si">{}</span><span class="s1"> tests ended with a warning&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_warn_count</span><span class="p">),</span>
+            <span class="s1">&#39;  </span><span class="si">{}</span><span class="s1"> tests failed&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fail_count</span><span class="p">),</span>
+            <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;There are currently </span><span class="si">{}</span><span class="s1"> tests in the queue&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tests</span><span class="p">)),</span>
+            <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fail_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_success_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warn_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">report_msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">report_lines</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notifier</span><span class="o">.</span><span class="n">notify_report</span><span class="p">(</span><span class="n">report_msg</span><span class="p">)</span></div>
+
+    <span class="c1"># .............................</span>
 <div class="viewcode-block" id="Controller.run"><a class="viewcode-back" href="../../../source/lmtest.base.html#lmtest.base.controller.Controller.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run the test controller until told to stop.&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running Test Controller&#39;</span><span class="p">)</span>
+        <span class="n">last_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pidfile</span><span class="p">):</span>
+                <span class="c1"># Check if we should report</span>
+                <span class="n">curr_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">curr_time</span> <span class="o">-</span> <span class="n">last_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_interval</span><span class="p">:</span>
+                    <span class="c1"># Reset last time</span>
+                    <span class="n">last_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
                 <span class="c1"># Get the first test if it exists and run it</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tests</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tests</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delay_time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">next_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tests</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -268,50 +299,16 @@
 <span class="sd">        Args:</span>
 <span class="sd">            notifier (Notifier): The notifier to use for this instance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notifier</span> <span class="o">=</span> <span class="n">notifier</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notifier</span> <span class="o">=</span> <span class="n">notifier</span></div>
 
+    <span class="c1"># .............................</span>
+<div class="viewcode-block" id="Controller.set_report_interval"><a class="viewcode-back" href="../../../source/lmtest.base.html#lmtest.base.controller.Controller.set_report_interval">[docs]</a>    <span class="k">def</span> <span class="nf">set_report_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval_seconds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the Controller instances reporting interval.</span>
 
-<span class="c1"># .............................................................................</span>
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../source/lmtest.base.html#lmtest.base.controller.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Run the script.&quot;&quot;&quot;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;Lifemapper Makeflow Daemon (Matt Daemon)&#39;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Controls a pool of Makeflow processes&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--log_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;File path to log notifications to.  Use console if not provided.&#39;</span>
-    <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s1">&#39;cmd&#39;</span><span class="p">,</span>
-        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="n">DaemonCommands</span><span class="o">.</span><span class="n">START</span><span class="p">,</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">STOP</span><span class="p">,</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">RESTART</span><span class="p">],</span>
-        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The action that should be performed by the makeflow daemon&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="n">controller_daemon</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="n">CONTROLLER_PID_FILE</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">)</span>
-        <span class="c1"># Check to see if notifier configuration is provided</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">controller_daemon</span><span class="o">.</span><span class="n">set_notifier</span><span class="p">(</span><span class="n">LogNotifier</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">))</span>
-        <span class="n">controller_daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">STOP</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stop&#39;</span><span class="p">)</span>
-        <span class="n">controller_daemon</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">RESTART</span><span class="p">:</span>
-        <span class="n">controller_daemon</span><span class="o">.</span><span class="n">restart</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;Unknown command: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">lower</span><span class="p">())))</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div>
-
-
-<span class="c1"># .............................................................................</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+<span class="sd">        Args:</span>
+<span class="sd">            interval_seconds (int): The number of seconds to wait between reports.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_interval</span> <span class="o">=</span> <span class="n">interval_seconds</span></div></div>
 </pre></div>
 
            </div>

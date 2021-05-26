@@ -164,6 +164,7 @@
 <span class="kn">from</span> <span class="nn">lmtest.base.controller</span> <span class="k">import</span> <span class="n">CONTROLLER_PID_FILE</span><span class="p">,</span> <span class="n">Controller</span>
 <span class="kn">from</span> <span class="nn">lmtest.base.daemon</span> <span class="k">import</span> <span class="n">DaemonCommands</span>
 <span class="kn">from</span> <span class="nn">lmtest.base.test_finder</span> <span class="k">import</span> <span class="n">find_tests</span>
+<span class="kn">from</span> <span class="nn">lmtest.notifications.log_notifier</span> <span class="k">import</span> <span class="n">LogNotifier</span>
 
 
 <span class="c1"># .............................................................................</span>
@@ -175,7 +176,16 @@
     <span class="p">)</span>
 
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test_dir&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Directory containing tests configurations.&#39;</span>
+        <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--report_interval&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The number of seconds to wait between reporting intervals.&#39;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--log_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;File path to log notifications to.  Use console if not provided.&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;test_dir&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Directory containing tests configurations.&#39;</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s1">&#39;cmd&#39;</span><span class="p">,</span>
@@ -191,6 +201,12 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Start&#39;</span><span class="p">)</span>
         <span class="c1"># controller_daemon.add_tests(TESTS_TO_RUN)</span>
         <span class="n">controller_daemon</span><span class="o">.</span><span class="n">add_tests</span><span class="p">(</span><span class="n">find_tests</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">test_dir</span><span class="p">))</span>
+        <span class="c1"># Check to see if notifier configuration is provided</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">controller_daemon</span><span class="o">.</span><span class="n">set_notifier</span><span class="p">(</span><span class="n">LogNotifier</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">))</span>
+        <span class="c1"># Check to see if we should change report interval</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">report_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">controller_daemon</span><span class="o">.</span><span class="n">set_report_interval</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">report_interval</span><span class="p">)</span>
         <span class="n">controller_daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">DaemonCommands</span><span class="o">.</span><span class="n">STOP</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Stop&#39;</span><span class="p">)</span>

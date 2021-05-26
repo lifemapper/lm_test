@@ -9,6 +9,10 @@ This tool utilizes a test controller that schedules, runs, and evaluates tests.
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
+  - [Start Test Controller](#start-controller)
+  - [Stop Test Controller](#stop-controller)
+  - [Creating Test Classes](#creating-test-classes)
+  - [Adding Tests to Run](#adding-tests-to-run)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -39,6 +43,42 @@ run_controller stop
 
 This command will stop the controller.
 
+
+### Creating Test classes
+
+Test classes inherit from the ```LmTest``` class found in ```lmtest.base.test_base.py```.  
+Subclasses should overwrite the ```run_test``` method to perform the desired test.
+If the test should add a new test to the schedule, use the ```add_new_test``` method and the test controller will add the resulting test(s)
+once the test is finished.  Tests should raise ```lmtest.base.test_base.LmTestFailure``` if there is an error and
+```lmtest.base.test_base.LmTestWarning``` if there is a warning.  For both errors and warnings a meaningful message should be returned that
+will be emitted through the notification system.
+
+
+### Adding tests to run
+
+The test controller utilizes test configuration files to determine which tests to run.  These files should be located in the
+```TEST_DIRECTORY``` referenced by the ```-t``` argument to the ```run_controller``` script.  These test configuration files are in JSON
+format and have the required parameters, ```module```, ```test_class```, and ```parameters```.  The ```module``` parameter should be the
+package where the test class you wish to run is found.  The ```test_class``` parameter is the test class in the specified module to run.
+```Parameters``` should be a dictionary of parameters that will be used to instantiate the test class. 
+
+An example test configuration is:
+```json
+{
+    "module": "lm_test.tests.memory_usage_test",
+    "test_class": "MemoryUsageTest",
+    "parameters": {
+       "warn_percent": 80,
+       "error_percent": 95,
+       "delay_time": 0,
+       "delay_interval": 300
+    }
+}
+```
+
+Other example test configurations can be found in [The example tests directory](example_tests).
+
+
 ## Contributing
 
 We welcome contributions!  [See our current issues](https://github.com/lifemapper/lmtest/issues) and please read 
@@ -48,50 +88,3 @@ our [Contributing guide](CONTRIBUTING.md) and [our code of conduct](CODE_OF_COND
 ## License
 
 See [GPL3 License](LICENSE)
-
-
-
-
-
-
-
-## Test Controller
-
-The test controller ```Controller``` class can be found at ```lm_test.base.controller.py```.
-It runs as a daemon process in the background and can be started and stopped using commands
-rather than a synchronous python process.  The run method is fairly simple as it looks to
-see if there is a test to run that is ready, and if so, runs the first available test, then
-sleeps.  This run method continues until the process is stopped.
-
-Tests that fail output a message and eventually an email or other notification method.  If
-a test emits new tests, those are added to the schedule to be run.
-
-----
-
-## Test classes
-
-Test classes should inherit from the ```LmTest``` class found in ```lm_test.base.test_base.py```.
-If the subclass overwrites the ```__init__``` method, it should call the
-```LmTest.__init__(self, delay_time)``` of the parent class.  The subclass must also implement
-the ```run_test``` method, which should perform the test desired.  Errors should raise
-```lm_test.base.test_base.LmTestFailure``` and warnings should raise
-```lm_test.base.test_base.LmTestWarning``` with a meaningful message to be returned to
-whomever is monitoring these tests.
-
-----
-
-## Creating a new test class
-
-Examples of test subclasses can be found in the ```lm_test.tests``` directory.  As tests run,
-they may create new tests (example: a test checking for the existance of an object could then
-emit a new test to validate the object once it exists).  To do this, use the
-```LmTest.add_new_test``` method.
-
-----
-
-## Adding tests to run
-
-For now, tests are added by adding them to the ```TESTS_TO_RUN``` list in
-```scripts/run_controller.py```.  In the future tests will be added in a more generic manner.
-
-----

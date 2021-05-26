@@ -13,9 +13,11 @@ Python.
    :maxdepth: 2
    :caption: Contents:
 
-   pages/installatio
+   pages/installation
    pages/usage
    pages/contributing
+   
+   modules
 
 
 Indices and tables

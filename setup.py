@@ -16,7 +16,7 @@ setup(
     long_description=readme,
     author='CJ Grady',
     author_email='cjgrady@ku.edu',
-    url='https://github.com/lifemapper/lm_test',
+    url='https://github.com/lifemapper/lmtest',
     license=module_license,
     packages=find_packages(),
     package_dir={

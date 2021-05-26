@@ -1,0 +1,22 @@
+name: Sphinx to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 0
+    - name: Build and Commit
+      uses: sphinx-notes/pages@1.0
+      with:
+        documentation_path: _sphinx_config/
+    - name: Push changes to GH Pages branch
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages

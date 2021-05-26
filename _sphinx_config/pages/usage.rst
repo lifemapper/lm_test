@@ -63,4 +63,4 @@ An example test configuration is:
   }
 
 Other example test configurations can be found in
-[The example tests directory](https://github.com/lifemapper/lmtest/blob/main/example_tests).
+`The example tests directory <https://github.com/lifemapper/lmtest/blob/main/example_tests>`_

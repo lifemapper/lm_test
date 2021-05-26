@@ -46,7 +46,7 @@ This command will stop the controller.
 
 ### Creating Test classes
 
-Test classes inherit from the ```LmTest``` class found in ```lmtest.base.test_base.py```.  
+Test classes inherit from the ```LmTest``` class found in ```lmtest.base.test_base.py```.
 Subclasses should overwrite the ```run_test``` method to perform the desired test.
 If the test should add a new test to the schedule, use the ```add_new_test``` method and the test controller will add the resulting test(s)
 once the test is finished.  Tests should raise ```lmtest.base.test_base.LmTestFailure``` if there is an error and
@@ -60,7 +60,7 @@ The test controller utilizes test configuration files to determine which tests t
 ```TEST_DIRECTORY``` referenced by the ```-t``` argument to the ```run_controller``` script.  These test configuration files are in JSON
 format and have the required parameters, ```module```, ```test_class```, and ```parameters```.  The ```module``` parameter should be the
 package where the test class you wish to run is found.  The ```test_class``` parameter is the test class in the specified module to run.
-```Parameters``` should be a dictionary of parameters that will be used to instantiate the test class. 
+```Parameters``` should be a dictionary of parameters that will be used to instantiate the test class.
 
 An example test configuration is:
 ```json
@@ -81,7 +81,7 @@ Other example test configurations can be found in [The example tests directory](
 
 ## Contributing
 
-We welcome contributions!  [See our current issues](https://github.com/lifemapper/lmtest/issues) and please read 
+We welcome contributions!  [See our current issues](https://github.com/lifemapper/lmtest/issues) and please read
 our [Contributing guide](CONTRIBUTING.md) and [our code of conduct](CODE_OF_CONDUCT.md).
 
 

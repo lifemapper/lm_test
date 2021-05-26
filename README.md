@@ -3,6 +3,8 @@
 A tool for performing automated tests with Python.
 
 This tool utilizes a test controller that schedules, runs, and evaluates tests.
+Additional documentation can be found at the
+[lmtest GitHub pages](https://lifemapper.github.io/lmtest/).
 
 ## Table of Contents
 
@@ -18,8 +20,10 @@ This tool utilizes a test controller that schedules, runs, and evaluates tests.
 
 ## Background
 
-This tool was created to monitor our servers to catch unexpected failures in our provided web services, database connections, machine conditions, etc.
-We find this tool to be useful for monitoring these elements and catching transient problems that may evolve over time (example: Full disk or changes in connected APIs).
+This tool was created to monitor our servers to catch unexpected failures in our
+provided web services, database connections, machine conditions, etc.  We find this
+tool to be useful for monitoring these elements and catching transient problems that
+may evolve over time (example: Full disk or changes in connected APIs).
 
 ## Install
 

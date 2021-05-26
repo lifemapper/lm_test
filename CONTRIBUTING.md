@@ -1,11 +1,11 @@
-# How to contribute to Lifemapper lm_test
+# How to contribute to Lifemapper lmtest
 
 ## You found a bug
 
 * Check that it hasn't already be reported by searching our GitHub issues
-[Issues](https://github.com/lifemapper/lm_test/issues).
+[Issues](https://github.com/lifemapper/lmtest/issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/lifemapper/lm_test/issues/new?assignees=cjgrady&template=bug_report.md).  Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/lifemapper/lmtest/issues/new?assignees=cjgrady&template=bug_report.md).  Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 
 ## You wrote a patch for a bug
@@ -19,7 +19,7 @@
 
 ## You want to add a new analysis
 
-* [Submit a new GitHub issue](https://github.com/lifemapper/lm_test/issues/new?assignees=&template=feature_request.md) and suggest your analysis.  We want to make sure that it fits before you spend time coding it.
+* [Submit a new GitHub issue](https://github.com/lifemapper/lmtest/issues/new?assignees=&template=feature_request.md) and suggest your analysis.  We want to make sure that it fits before you spend time coding it.
 
 * Write your code and tests following our coding and testing conventions.
 
@@ -42,7 +42,7 @@ black --config .github/linters/.python-black
 isort --sp .github/linters/.isort.cfg .
 pylint .
 flake8 --config .github/linters/.flake8
-pytest tests/ -v --cov lm_test --cov-report term-missing
+pytest tests/ -v --cov lmtest --cov-report term-missing
 ```
 
 ## You want to update documentation
@@ -53,7 +53,7 @@ pytest tests/ -v --cov lm_test --cov-report term-missing
 files
 
 ```bash
-sphinx-apidoc -o ./_sphinx_config/source ./lm_test/
+sphinx-apidoc -o ./_sphinx_config/source ./lmtest/
 ```
 
 * If you edit any RST docs (or update API docs), rebuild the html pages

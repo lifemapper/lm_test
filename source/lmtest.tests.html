@@ -15,6 +15,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="lmtest.scripts package" href="lmtest.scripts.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -39,23 +40,59 @@
 <section id="lmtest-tests-cpu-usage-test-module">
 <h2>lmtest.tests.cpu_usage_test module<a class="headerlink" href="#lmtest-tests-cpu-usage-test-module" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="lmtest-tests-disk-usage-test-module">
-<h2>lmtest.tests.disk_usage_test module<a class="headerlink" href="#lmtest-tests-disk-usage-test-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.tests.disk_usage_test">
+<span id="lmtest-tests-disk-usage-test-module"></span><h2>lmtest.tests.disk_usage_test module<a class="headerlink" href="#module-lmtest.tests.disk_usage_test" title="Permalink to this headline">¶</a></h2>
+<p>Test disk usage.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.tests.disk_usage_test.DiskUsageTest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.tests.disk_usage_test.</span></span><span class="sig-name descname"><span class="pre">DiskUsageTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_disk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn_percent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_percent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/tests/disk_usage_test.html#DiskUsageTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.tests.disk_usage_test.DiskUsageTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTest" title="lmtest.base.test_base.LmTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">lmtest.base.test_base.LmTest</span></code></a></p>
+<p>Test checking disk usage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.tests.disk_usage_test.DiskUsageTest.run_test">
+<span class="sig-name descname"><span class="pre">run_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/tests/disk_usage_test.html#DiskUsageTest.run_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.tests.disk_usage_test.DiskUsageTest.run_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTestFailure" title="lmtest.base.test_base.LmTestFailure"><strong>LmTestFailure</strong></a> – Raised if disk usage is above error threshold.</p></li>
+<li><p><a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTestWarning" title="lmtest.base.test_base.LmTestWarning"><strong>LmTestWarning</strong></a> – Raised if disk usage is above warning threshold.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="lmtest-tests-lm-client-test-module">
-<h2>lmtest.tests.lm_client_test module<a class="headerlink" href="#lmtest-tests-lm-client-test-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.tests.memory_usage_test">
+<span id="lmtest-tests-memory-usage-test-module"></span><h2>lmtest.tests.memory_usage_test module<a class="headerlink" href="#module-lmtest.tests.memory_usage_test" title="Permalink to this headline">¶</a></h2>
+<p>Test memory usage.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.tests.memory_usage_test.MemoryUsageTest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.tests.memory_usage_test.</span></span><span class="sig-name descname"><span class="pre">MemoryUsageTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">warn_percent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_percent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/tests/memory_usage_test.html#MemoryUsageTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.tests.memory_usage_test.MemoryUsageTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTest" title="lmtest.base.test_base.LmTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">lmtest.base.test_base.LmTest</span></code></a></p>
+<p>Test checking memory usage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.tests.memory_usage_test.MemoryUsageTest.run_test">
+<span class="sig-name descname"><span class="pre">run_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/tests/memory_usage_test.html#MemoryUsageTest.run_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.tests.memory_usage_test.MemoryUsageTest.run_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTestFailure" title="lmtest.base.test_base.LmTestFailure"><strong>LmTestFailure</strong></a> – Raised if memory usage is above error threshold.</p></li>
+<li><p><a class="reference internal" href="lmtest.base.html#lmtest.base.test_base.LmTestWarning" title="lmtest.base.test_base.LmTestWarning"><strong>LmTestWarning</strong></a> – Raised if memory usage is above warning threshold.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="lmtest-tests-memory-usage-test-module">
-<h2>lmtest.tests.memory_usage_test module<a class="headerlink" href="#lmtest-tests-memory-usage-test-module" title="Permalink to this headline">¶</a></h2>
-</section>
-<section id="lmtest-tests-open-api-test-module">
-<h2>lmtest.tests.open_api_test module<a class="headerlink" href="#lmtest-tests-open-api-test-module" title="Permalink to this headline">¶</a></h2>
-</section>
-<section id="lmtest-tests-ot-client-test-module">
-<h2>lmtest.tests.ot_client_test module<a class="headerlink" href="#lmtest-tests-ot-client-test-module" title="Permalink to this headline">¶</a></h2>
-</section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.tests">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lmtest.tests" title="Permalink to this headline">¶</a></h2>
+<p>Package containing default lmtest tests for distribution.</p>
 </section>
 </section>
 
@@ -77,16 +114,25 @@
 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../pages/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lmtest</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lmtest.html">lmtest package</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lmtest</a><ul>
+  <li><a href="lmtest.html">lmtest package</a><ul>
+      <li>Previous: <a href="lmtest.scripts.html" title="previous chapter">lmtest.scripts package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

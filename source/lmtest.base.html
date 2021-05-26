@@ -15,6 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lmtest.notifications package" href="lmtest.notifications.html" />
+    <link rel="prev" title="lmtest package" href="lmtest.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,20 +38,284 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="lmtest-base-controller-module">
-<h2>lmtest.base.controller module<a class="headerlink" href="#lmtest-base-controller-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.base.controller">
+<span id="lmtest-base-controller-module"></span><h2>lmtest.base.controller module<a class="headerlink" href="#module-lmtest.base.controller" title="Permalink to this headline">¶</a></h2>
+<p>Module containing test controller class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.controller.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pidfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lmtest.base.daemon.Daemon" title="lmtest.base.daemon.Daemon"><code class="xref py py-class docutils literal notranslate"><span class="pre">lmtest.base.daemon.Daemon</span></code></a></p>
+<p>Test controller.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.add_tests">
+<span class="sig-name descname"><span class="pre">add_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_tests</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.add_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.add_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new test object to run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_tests</strong> (<cite>list</cite> of <cite>LmTest</cite>) – A list of test objects to run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the test controller.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.rest">
+<span class="sig-name descname"><span class="pre">rest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sleep_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.rest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.rest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sleep before trying to run the next test.</p>
+<dl class="simple">
+<dt>Note: This is abstracted just a bit in case we want to sleep for</dt><dd><p>“smart” intervals, such as until the next test is scheduled to run.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sleep_seconds</strong> (<cite>int</cite>, optional) – The number of seconds to sleep.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the test controller until told to stop.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.run_test">
+<span class="sig-name descname"><span class="pre">run_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_to_run</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.run_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.run_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a test and process the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>test_to_run</strong> (<cite>LmTest</cite>) – The test that should be run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.controller.Controller.set_notifier">
+<span class="sig-name descname"><span class="pre">set_notifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#Controller.set_notifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.Controller.set_notifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the Controller instances notification method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notifier</strong> (<em>Notifier</em>) – The notifier to use for this instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lmtest.base.controller.main">
+<span class="sig-prename descclassname"><span class="pre">lmtest.base.controller.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/controller.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.controller.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the script.</p>
+</dd></dl>
+
 </section>
-<section id="lmtest-base-daemon-module">
-<h2>lmtest.base.daemon module<a class="headerlink" href="#lmtest-base-daemon-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.base.daemon">
+<span id="lmtest-base-daemon-module"></span><h2>lmtest.base.daemon module<a class="headerlink" href="#module-lmtest.base.daemon" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a base-Daemon class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.daemon.</span></span><span class="sig-name descname"><span class="pre">Daemon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pidfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A generic daemon class.</p>
+<p>Usage: subclass the Daemon class and override the run() method</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.daemonize">
+<span class="sig-name descname"><span class="pre">daemonize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.daemonize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.daemonize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do the UNIX double-fork magic.</p>
+<dl class="simple">
+<dt>See:</dt><dd><dl class="simple">
+<dt>Stevens’ “Advanced Programming in the UNIX Environment”</dt><dd><p>(ISBN 0201563177)
+<a class="reference external" href="http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16">http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16</a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.delpid">
+<span class="sig-name descname"><span class="pre">delpid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.delpid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.delpid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean up by removing PID file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the daemon process.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.on_shutdown">
+<span class="sig-name descname"><span class="pre">on_shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.on_shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.on_shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a graceful shutdown operation of the daemon process.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.on_update">
+<span class="sig-name descname"><span class="pre">on_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.on_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.on_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do whatever is necessary to update the daemon.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.restart">
+<span class="sig-name descname"><span class="pre">restart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.restart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restart the daemon.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the daemon process.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the daemon.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the status of the daemon.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the daemon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><strong>Exception</strong></a> – Raised if the PID file cannot be deleted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.daemon.Daemon.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#Daemon.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.Daemon.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signal a running process to update itself.</p>
+<p>Send a signal to the running process to have it update itself. This
+update is defined by the subclass and could mean re-reading a
+configuration file, checking the environment, or something else.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.base.daemon.DaemonCommands">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.daemon.</span></span><span class="sig-name descname"><span class="pre">DaemonCommands</span></span><a class="reference internal" href="../_modules/lmtest/base/daemon.html#DaemonCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.daemon.DaemonCommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class containing command constants.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lmtest.base.daemon.DaemonCommands.RESTART">
+<span class="sig-name descname"><span class="pre">RESTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'restart'</span></em><a class="headerlink" href="#lmtest.base.daemon.DaemonCommands.RESTART" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lmtest.base.daemon.DaemonCommands.START">
+<span class="sig-name descname"><span class="pre">START</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'start'</span></em><a class="headerlink" href="#lmtest.base.daemon.DaemonCommands.START" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lmtest.base.daemon.DaemonCommands.STOP">
+<span class="sig-name descname"><span class="pre">STOP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'stop'</span></em><a class="headerlink" href="#lmtest.base.daemon.DaemonCommands.STOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="lmtest-base-test-base-module">
-<h2>lmtest.base.test_base module<a class="headerlink" href="#lmtest-base-test-base-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.base.test_base">
+<span id="lmtest-base-test-base-module"></span><h2>lmtest.base.test_base module<a class="headerlink" href="#module-lmtest.base.test_base" title="Permalink to this headline">¶</a></h2>
+<p>Base classes for Lifemapper tests.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.test_base.</span></span><span class="sig-name descname"><span class="pre">LmTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base class for tests.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTest.add_new_test">
+<span class="sig-name descname"><span class="pre">add_new_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTest.add_new_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTest.add_new_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new test to run based on the current test status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>test</strong> (<a class="reference internal" href="#lmtest.base.test_base.LmTest" title="lmtest.base.test_base.LmTest"><em>LmTest</em></a>) – A new test to run based on the result of this test.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTest.get_new_tests">
+<span class="sig-name descname"><span class="pre">get_new_tests</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTest.get_new_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTest.get_new_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the new tests generated by the current test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of newly generated tests.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of LmTest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTest.run_test">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">run_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTest.run_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTest.run_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lmtest.base.test_base.LmTestFailure" title="lmtest.base.test_base.LmTestFailure"><strong>LmTestFailure</strong></a> – Raised if the test fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTestFailure">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.test_base.</span></span><span class="sig-name descname"><span class="pre">LmTestFailure</span></span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTestFailure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTestFailure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception class to raise when a test fails.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="lmtest.base.test_base.LmTestWarning">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">lmtest.base.test_base.</span></span><span class="sig-name descname"><span class="pre">LmTestWarning</span></span><a class="reference internal" href="../_modules/lmtest/base/test_base.html#LmTestWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_base.LmTestWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Warning" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Warning</span></code></a></p>
+<p>Warning class to raise when a test ends in a warning status.</p>
+</dd></dl>
+
 </section>
-<section id="lmtest-base-test-finder-module">
-<h2>lmtest.base.test_finder module<a class="headerlink" href="#lmtest-base-test-finder-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.base.test_finder">
+<span id="lmtest-base-test-finder-module"></span><h2>lmtest.base.test_finder module<a class="headerlink" href="#module-lmtest.base.test_finder" title="Permalink to this headline">¶</a></h2>
+<p>Module containing tools for finding and importing tests.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="lmtest.base.test_finder.find_tests">
+<span class="sig-prename descclassname"><span class="pre">lmtest.base.test_finder.</span></span><span class="sig-name descname"><span class="pre">find_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lmtest/base/test_finder.html#find_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lmtest.base.test_finder.find_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find tests specified in JSON files in test_dir.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>test_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Directory containing JSON test configuration files.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of LmTest testing objects.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<section id="module-lmtest.base">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lmtest.base" title="Permalink to this headline">¶</a></h2>
+<p>Package containing base classes for lmtest.</p>
 </section>
 </section>
 
@@ -71,16 +337,26 @@
 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../pages/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lmtest</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lmtest.html">lmtest package</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lmtest</a><ul>
+  <li><a href="lmtest.html">lmtest package</a><ul>
+      <li>Previous: <a href="lmtest.html" title="previous chapter">lmtest package</a></li>
+      <li>Next: <a href="lmtest.notifications.html" title="next chapter">lmtest.notifications package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

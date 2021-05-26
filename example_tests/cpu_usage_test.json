@@ -1,5 +1,5 @@
 {
-    "module": "lm_test.tests.cpu_usage_test",
+    "module": "lmtest.tests.cpu_usage_test",
     "test_class": "CPUUsageTest",
     "parameters": {
        "warn_percent": 80,

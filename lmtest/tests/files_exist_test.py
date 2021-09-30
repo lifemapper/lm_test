@@ -1,6 +1,5 @@
 """Test for the existence and permissions of files."""
 from pathlib import Path
-import shutil
 
 import lmtest.base.test_base as test_base
 

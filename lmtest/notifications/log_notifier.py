@@ -1,6 +1,6 @@
 """Module containing methods for producing notifications via a logger."""
 import logging
-from logging .handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler
 import os
 
 

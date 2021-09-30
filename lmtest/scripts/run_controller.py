@@ -12,7 +12,7 @@ from lmtest.notifications.log_notifier import LogNotifier
 def main():
     """Run the main method for the script."""
     parser = argparse.ArgumentParser(
-        prog='Lifemapper Makeflow Daemon (Matt Daemon)',
+        prog='LM Test Daemon',
         description='Controls a pool of Makeflow processes',
     )
 
